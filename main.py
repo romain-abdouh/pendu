@@ -86,7 +86,7 @@ def start_game(surface, font):
             start_ticks = pygame.time.get_ticks()
             while pygame.time.get_ticks() - start_ticks < 1000:  # Pause de 1 seconde
                 pygame.time.delay(100)
-            show_loose_menu(surface)
+            show_loose_menu(surface, chosen_word)
 
 def rotate_arm(surface, color, angle, position, size):
     rotated_arm = pygame.Surface(size, pygame.SRCALPHA)
@@ -109,9 +109,9 @@ def show_victory_menu(surface):
     felicitation.add.button('Retourner au menu', main_menu)
     felicitation.mainloop(surface)
 
-def show_loose_menu(surface):
+def show_loose_menu(surface, chosen_word):
     loose = pygame_menu.Menu('Désolé', 800, 600, theme=pygame_menu.themes.THEME_DARK)
-    loose.add.button('Désolé, vous avez perdu !', pygame_menu.events.NONE)
+    loose.add.button(f'Désolé, vous avez perdu. Le mot était : {chosen_word}', pygame_menu.events.NONE)
     loose.add.button('Retourner au menu', main_menu)
     loose.mainloop(surface)
 
